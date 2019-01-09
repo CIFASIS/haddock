@@ -78,6 +78,7 @@ getInstLoc (TyFamInstD _ (TyFamInstDecl
   -- in particular, we need to dig a bit deeper to pull out the entire
   -- equation. This does not happen for data family instances, for some reason.
   { tfid_eqn = HsIB { hsib_body = FamEqn { feqn_rhs = L l _ }}})) = l
+getInstLoc (MorphD (MorphDecl { morph_con = L l _ })) = l
 getInstLoc (ClsInstD _ (XClsInstDecl nec)) = noExtCon nec
 getInstLoc (DataFamInstD _ (DataFamInstDecl (HsIB _ (XFamEqn nec)))) = noExtCon nec
 getInstLoc (TyFamInstD _ (TyFamInstDecl (HsIB _ (XFamEqn nec)))) = noExtCon nec
